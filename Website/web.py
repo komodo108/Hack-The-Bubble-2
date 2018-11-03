@@ -17,6 +17,16 @@ def loungers():
     #We'll need the number of loungers, etc
     return render_template('lounger.html')
 
+@web.route('/orders', methods=['GET'])
+def orders():
+    #We'll need the number of loungers, etc
+    return render_template('drink_selection.html')
+
+@web.route('/contacts', methods=['GET'])
+def contacts():
+    #We'll need the number of loungers, etc
+    return render_template('drink_selection.html')
+
 # For downloading files
 @web.route('/files/<path:filename>', methods=['GET'])
 def download(filename):
