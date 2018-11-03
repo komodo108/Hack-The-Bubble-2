@@ -17,7 +17,10 @@ def lounger_info():
         if 'id' in dataDict:
             if dataDict['id'] > 0:
                 info = lounger.getLoungerInfo(dataDict['id'])
-                return Response(json.dumps({'longer' : {info[0] : info[1]}}), status=200, mimetype='application/json')
+                if info:
+                    return Response(json.dumps({'lounger' : {info[0] : info[1]}}), status=200, mimetype='application/json')
+                else:
+                    return error()
             else:
                 return error()
         else:

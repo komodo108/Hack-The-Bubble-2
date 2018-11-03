@@ -14,16 +14,16 @@ app.config['UPLOAD_FOLDER'] = "uploads"
 with app.app_context():
     from web import web
     from get import get
+    from post import post
 
     app.register_blueprint(web)
     app.register_blueprint(get, url_prefix='/get')
-
+    app.register_blueprint(post, url_prefix='/post')
 
 @app.errorhandler(404)
 def page_not_found(e):
     """Error handling page"""
     return render_template('404.html'), 404
-
 
 # Finally, start the server!
 if __name__ == '__main__':

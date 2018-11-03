@@ -11,9 +11,8 @@
 </head>
 
 <body>
-    <!--html element file-->
     <nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
-        <div class="container" id="nav-container">
+    <div class="container" id="nav-container">
             <a class="navbar-brand" href="#">Welcome to BASH$Tards Beach Bar</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -35,9 +34,13 @@
                 </ul>
             </div>
         </div>
-
     </nav>
+<<<<<<< HEAD
     <!-- EOF html element file-->
+=======
+    <div id="table_no">Table 6</div>
+    <div id="title">Drink/Snack Selection</div>
+>>>>>>> f473f5ef4d4582a435bb37069d59ebac878a7814
     <div class="container card card-body">
         <div class="display-4" id="table_no">Table 6</div>
         <div id="title" class="lead" style="padding-left:10px;">Drink/Snack Selection</div>
@@ -50,17 +53,16 @@
                 </tr>
             </thead>
             <tbody>
-                <!--BOF HTML Element (Item listing)-->
                 <tr>
                     <td>
-                        <div class="price" id="a20thCentury">15.00</div>
+                        <div class="price" id="a20thCentury" id="price">item price</div>
                     </td>
                     <td>
                         <div class="row">
-                            <div class="col-md-8">
-                                <label>20th Century</label>
+                            <div class="col-md-8" id="name">
+                                <label>item name</label>
                             </div>
-                            <div class="col-md-4"><select class="custom-select custom-select-sm col-md-4" id="20thCentury">
+                            <div class="col-md-4"><select class="custom-select custom-select-sm col-md-4" id="quantity">
                                     <option selected value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -69,7 +71,6 @@
                         </div>
                     </td>
                 </tr>
-                <!--EOF HTML Element (Item listing)-->
             </tbody>
         </table>
         <div class="buttons row">
