@@ -42,3 +42,20 @@ def getLoungerInfo(id):
     helper.stop(cur, con)
 
     return lounger_info[0]
+
+def getNumLounger():
+    con, cur = helper.start()
+
+    cur.execute(
+        'SELECT COUNT(Lounger.id) '
+        'FROM Lounger;'
+    )
+    numOfLounger = cur.fetchall()
+
+    helper.stop(cur, con)
+
+    numOfLounger = list(numOfLounger[0])
+
+    return numOfLounger[0]
+
+getNumLounger()
