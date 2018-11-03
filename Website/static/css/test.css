@@ -1,18 +1,21 @@
-.container, html, body{
+.container,
+html,
+body {
     height: 90%;
-
     font-family: Verdana serif;
 }
 
 p {
     color: red;
 }
+
 body {
     padding-left: 5%;
     padding-right: 5%;
     background-image: url("background2.jpg");
     background-size: auto;
 }
+
 .table {
     width: 20%;
     height: 15%;
@@ -28,29 +31,13 @@ body {
 .btn {
     width: 95%;
     height: 95%;
-    
-    border-color: blanchedalmond;
 }
-
-
-
-
-.open {
-    background-color: lightgreen;
-}
-
-.open:hover {
-    background-color: rgb(156, 166, 177);
-}
-
 
 .closed {
     background-color: red;
 }
 
 .closed:hover {
-    background-color: red;
-    border-color: blanchedalmond;
     cursor: default !important;
 }
 
@@ -61,7 +48,6 @@ body {
     justify-content: center;
     align-content: stretch;
     flex-wrap: wrap;
-  
     margin: 0 auto;
     /*padding-left: 10%;*/
 }
