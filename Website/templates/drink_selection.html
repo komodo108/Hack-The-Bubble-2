@@ -11,7 +11,32 @@
 </head>
 
 <body>
-    <div id="title">Lei's Luau</div>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
+        <div class="container" id="nav-container">
+            <a class="navbar-brand" href="#">Welcome to BASH$Tards Beach Bar</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+    g
     <div id="table_no">Table 6</div>
     <div id="title">Drink/Snack Selection</div>
     <div class="container card card-body">
@@ -24,12 +49,14 @@
             </thead>
             <tbody>
                 <tr>
-                   <td>
-                       <div class="price" id="a20thCentury">15.00</div>
-                   </td>
+                    <td>
+                        <div class="price" id="a20thCentury">15.00</div>
+                    </td>
                     <td>
                         <div class="row">
-                            <div class="col-md-8"> <label>20th Century</label></div>
+                            <div class="col-md-8">
+                                <label>20th Century</label>
+                            </div>
                             <div class="col-md-4"><select class="custom-select custom-select-sm col-md-4" id="20thCentury">
                                     <option selected value="0">0</option>
                                     <option value="1">1</option>
@@ -42,9 +69,9 @@
 
             </tbody>
         </table>
-        <div class="buttons">
-            <button class="btn btn-secondary btn-block" type="submit">Clear Selection</button>
-            <button class="btn btn-primary btn-block" type="submit">Submit</button>
+        <div class="buttons row">
+            <button class="btn btn-info col-md-5" type="submit">Submit</button>
+            <button class="btn btn-secondary col-md-5" type="submit">Clear Selection</button>
         </div>
     </div>
 </body>
