@@ -76,6 +76,3 @@ def addCharge(booking, prices, quantities):
     cur.execute(query, (total_charge, owner))
     con.commit()
     helper.stop(con, cur)
-
-
-addCharge(8, [0.0, 10], [2, 4])
