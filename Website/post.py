@@ -35,14 +35,14 @@ def book():
                     if num == 0 and dataDict['lounger'] > 0:
                         #Everything is good!
                         cur = cnx.cursor()
-                        query = 'INSERT INTO Booking (`lounger`, start_time`, `finish_time`, `client`) VALUES (%s, %s, %s, %s)'
+                        query = 'INSERT INTO Booking (`lounger`, `start_time`, `finish_time`, `client`) VALUES (%s, %s, %s, %s)'
                         cur.execute(query, (dataDict['lounger'], dataDict['start_time'], dataDict['finish_time'], dataDict['client']))
                         cnx.commit()
                         cur.close()
 
                         # Now get the deails!
                         cur = cnx.cursor()
-                        query = 'SELECT `id` FROM Booking WHERE `lounger` = %s AND start_time` = %s AND `finish_time` = %s AND `client` = %s'
+                        query = 'SELECT `id` FROM Booking WHERE `lounger` = %s AND `start_time` = %s AND `finish_time` = %s AND `client` = %s'
                         cur.execute(query, (dataDict['lounger'], dataDict['start_time'], dataDict['finish_time'], dataDict['client']))
                         theid = cur.fetchone()
                         helper.stop(cnx, cur)
@@ -78,7 +78,7 @@ def login():
             if theid > 0:
                 if dataDict['booked']:
                     # deal with booking
-                    cnx, cur = start()
+                    cnx, cur = helper.start()
                     query = 'SELECT `id` FROM Booking WHERE `client` = %s AND start_time => %s'
                     cur.execute(query, (dataDict['user'], datetime.datetime.now()))
                     ids = cur.fetchall()
