@@ -2,13 +2,20 @@
 from flask import Blueprint, render_template, Response, request
 import mysql.connector
 import json
-from helper
+import helper
 import datetime
 
 post = Blueprint('post', __name__)
 
-# Expected usage is that when the user clicks on a lounger and it is taken to the lounger_detail page this method will trigger the id
-# will be passed into the SQL query
+@post.route('/booking', methods=['POST'])
+def book():
+    data = request.json
+
+    if data:
+        data
+    else:
+        return error()
+
 @post.route('/login', methods=['POST'])
 def login():
     data = request.json
