@@ -5,13 +5,15 @@ import os
 # Setup the get blueprint
 web = Blueprint('web', __name__)
 
-
+# Returns the root
 @web.route('/', methods=['GET'])
 def index():
     """Routes '/' to index.html"""
     return render_template('index.html', title="Hello!", render=True)
 
+# More browser endpoints here
 
+# For downloading files
 @web.route('/files/<path:filename>', methods=['GET'])
 def download(filename):
     """Download the file"""

@@ -1,25 +1,26 @@
 # For flask, mysql, crypto
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, Response, request
 import lounger
+import json
+from helper import error
 
-# Setup the get blueprint
 get = Blueprint('get', __name__)
-
-
-@get.route('/', methods=['GET'])
-def index():
-    """Routes '/' to index.html"""
-    return render_template('index.html', title="Hello!", render=True)
-
-@get.route('/loungers', methods=['GET'])
-def renderLoungers():
-    """Routes '/loungers' to lounger.html"""
-    lounger.getBooked()
-
 
 # Expected usage is that when the user clicks on a lounger and it is taken to the lounger_detail page this method will trigger the id
 # will be passed into the SQL query
-@get.route('/lounger_detail', methods=['GET'])
-def renderDetails(id):
-    """Routes '/lounger_detail to lounger_detail.html"""
-    lounger.getLoungerInfo(id)
+@get.route('/lounger_info', methods=['POST'])
+def lounger_info():
+    data = request.json
+
+    if data:
+        dataDict = json.loads(json.dumps(data))
+        if 'id' in dataDict:
+            if dataDict['id'] > 0:
+                info = lounger.getLoungerInfo(dataDict['id'])
+                return Response(json.dumps({'longer' : {info[0] : info[1]}}), status=200, mimetype='application/json')
+            else:
+                return error()
+        else:
+            return error()
+    else:
+        return error()

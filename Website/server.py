@@ -13,8 +13,10 @@ if nocache:
 app.config['UPLOAD_FOLDER'] = "uploads"
 with app.app_context():
     from web import web
+    from get import get
 
-    app.register_blueprint(web)  # add url_predix'' if needed
+    app.register_blueprint(web)
+    app.register_blueprint(get, url_prefix='/get')
 
 
 @app.errorhandler(404)

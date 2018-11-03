@@ -1,4 +1,6 @@
+from flask import Response
 import mysql.connector
+import json
 
 def start (): 
     connect = mysql.connector.connect(
@@ -14,3 +16,6 @@ def start ():
 def stop (con, cursor):
     cursor.close()
     con.close()
+
+def error():
+    return Response(json.dumps({'error' : 'an error occured'}), status=404, mimetype='application/json')
