@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Example - {{title}}</title>
+    <!-- example page plugins Page plugins -->
+    <!-- remember to add the "../static/x" here!-->
+    <link type="text/css" href="../static/css/test.css" rel="stylesheet">
+</head>
+
+<body>
+	{%- if render -%}
+	<p>Hello, this is a test of page with logic!</p>
+	{%- else -%}
+	<p>You can find out more <a href="http://jinja.pocoo.org/">here</a>!</p>
+	{%- endif -%}
+</body>
+
+</html>
