@@ -4,6 +4,7 @@ import mysql.connector
 import json
 import helper
 import datetime
+from order import makeOrder, addCharge
 
 post = Blueprint('post', __name__)
 
@@ -64,7 +65,6 @@ def book():
 
 @post.route('/login', methods=['POST'])
 def login():
-    print(request.json)
     data = request.json
 
     if data:
@@ -90,6 +90,74 @@ def login():
                     return Response(status=200)
             else:
                 return helper.error()
+        else:
+            return helper.error()
+    else:
+        return helper.error()
+
+@post.route('/order', methods=['POST'])
+def order():
+    data = request.json
+
+    if data:
+        dataDict = json.loads(json.dumps(data))
+        if 'order' in dataDict and 'booking' in dataDict:
+            cnx, cur = helper.start()
+            #query = 'SELECT `id` FROM Client WHERE `username`=%s AND `password`=%s'
+            #cur.execute(query, (dataDict['user'], dataDict['pass']))
+            #theid = cur.fetchone()
+            #helper.stop(cnx, cur)
+
+            ordered_items = []
+            prices = []
+            quantities = []
+            for i in range(0, len(dataDict['order'])):
+                query = 'SELECT `id` FROM Item WHERE `name`=%s;'
+                cur.execute(query, (dataDict['order'][i]['name'], ))
+                ordered_items.append(cur.fetchone()[0])
+
+            print(ordered_items)
+
+            helper.stop(cnx, cur)
+            cnx, cur = helper.start()
+
+            for i in range(0, len(dataDict['order'])):
+                query = 'SELECT `price` FROM Item WHERE `id`=%s;'
+                cur.execute(query, (ordered_items[i], ))
+                prices.append(cur.fetchone()[0])
+
+            print(prices)
+
+            for i in range(0, len(dataDict['order'])):
+                quantities.append(dataDict['order'][i]['quantity'])
+
+            print(quantities)
+
+            print(dataDict['booking'])
+
+            did_work = makeOrder(ordered_items, quantities, dataDict['booking'])
+
+            if(did_work == True):
+                addCharge(dataDict['booking'], prices, quantities)
+                return Response(status=200)
+            else:
+                return helper.error()
+
+
+ #           if theid[0] > 0:
+  #              if dataDict['booking']:
+   #                 # deal with booking
+    #                cnx, cur = helper.start()
+     #               query = 'SELECT MAX(id) FROM Booking WHERE `client` = %s AND `start_time` >= %s'
+      #              cur.execute(query, (theid[0], datetime.datetime.now()))
+       #             ids = cur.fetchone()
+        #            helper.stop(cnx, cur)
+
+         #           return Response(json.dumps({'bookings' : ids}), status=200, mimetype='application/json')
+               # else:
+               #     return Response(status=200)
+            #else:
+            #    return helper.error()
         else:
             return helper.error()
     else:
