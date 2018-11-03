@@ -1,9 +1,6 @@
 import helper
 import datetime
 
-def getLoungers():
-    print("hello")
-
 def getBooked():
     con, cur = helper.start()
     current_dt = datetime.datetime.now()
@@ -44,4 +41,4 @@ def getLoungerInfo(id):
 
     helper.stop(cur, con)
 
-    return useful_results[0]
+    return lounger_info[0]

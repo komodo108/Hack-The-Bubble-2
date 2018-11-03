@@ -1,33 +1,51 @@
 import helper
 
+# Expecting an array of tuples as input parameter
 def makeOrder(order):
-    cur, con = helper.start()
+    # Make the connection and cursor
+    con, cur = helper.start()
 
+    # Get the size of order table before the new order is added
     cur.execute(
-        'SELECT COUNT(Order.id) FROM Order;'
+        'SELECT COUNT(Order.id) FROM password.Order;'
     )
 
     number_before = cur.fetchone()
+    number_before = number_before[0]
+
+    # Iterate through the array of arrays in the order
+    # Adding them to the table
+    # Is there a better way to generate this? 
+    # Can i pre calculate the order values as a string
 
     for val in order:
+        print(val)
+        booking = val[0]
+        item = val[1]
+        quantity = val[2]
+
         cur.execute(
-            'INSERT INTO Order (booking, item, quantity)'
+            'INSERT INTO password.Order (booking, item, quantity) '
             'VALUES (%s, %s, %s);',
-            (val[0], val[1], val[2])
+            (booking, item, quantity)
         )
 
+        con.commit();
+
+    # Get the size of order table after the new order is added
     cur.execute(
-        'SELECT COUNT(Order.id) FROM Order;'
+        'SELECT COUNT(Order.id) FROM password.Order;'
     )
 
     number_after = cur.fetchone()
+    number_after = number_after[0]
 
+    # Check th right number of orders have been added
     did_work = False
-
-    if((number_after[0] - number_before[0]) == len(order)):
+    if((number_after - number_before) == len(order)):
         did_work = True
 
-    con.commit()
+    print(did_work)
 
     helper.stop(con, cur)
 
