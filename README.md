@@ -1,2 +1,4 @@
 # Hack-The-Bubble-2
-Code for the 2nd Hack The Bubble!
+
+### Motivation
+Project for Hack the Bubble 2018 - done in 12 hours
