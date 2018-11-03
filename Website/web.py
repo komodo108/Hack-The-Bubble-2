@@ -1,5 +1,6 @@
 # For flask, mysql, crypto
 from flask import current_app, Blueprint, render_template, send_from_directory
+import lounger
 import os
 
 # Setup the get blueprint
@@ -15,7 +16,8 @@ def index():
 @web.route('/loungers', methods=['GET'])
 def loungers():
     #We'll need the number of loungers, etc
-    return render_template('lounger.html')
+    l = (5, ) * lounger.getNumLounger()
+    return render_template('lounger.html', loungers=l, number=lounger.getNumLounger())
 
 @web.route('/orders', methods=['GET'])
 def orders():
@@ -25,7 +27,7 @@ def orders():
 @web.route('/contacts', methods=['GET'])
 def contacts():
     #We'll need the number of loungers, etc
-    return render_template('drink_selection.html')
+    return render_template('contact.html')
 
 # For downloading files
 @web.route('/files/<path:filename>', methods=['GET'])
