@@ -31,3 +31,19 @@ body {
 .col-md-4 > select {
     float: right;
 }
+.navbar {
+    border-radius: 6px;
+    border: 1px solid black;
+    height: 10%;
+    margin: 3%;
+    /*background-image: url("background2.jpg");
+    background-size: center;*/
+    background-color: rgba(146, 102, 102, 0.575)
+}
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: stretch;
+    flex-wrap: wrap;
+}

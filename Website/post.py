@@ -71,16 +71,16 @@ def login():
         if 'user' in dataDict and 'pass' in dataDict:
             cnx, cur = helper.start()
             query = 'SELECT `id` FROM Client WHERE `username`=%s AND `password`=%s'
-            cur.execute(query, (dataDict['user'], dataDict['password']))
+            cur.execute(query, (dataDict['user'], dataDict['pass']))
             theid = cur.fetchone()
             helper.stop(cnx, cur)
 
-            if theid > 0:
-                if dataDict['booked']:
+            if theid[0] > 0:
+                if dataDict['booking']:
                     # deal with booking
                     cnx, cur = helper.start()
-                    query = 'SELECT `MAX(id)` FROM Booking WHERE `client` = %s AND start_time => %s'
-                    cur.execute(query, (dataDict['user'], datetime.datetime.now()))
+                    query = 'SELECT MAX(id) FROM Booking WHERE `client` = %s AND `start_time` >= %s'
+                    cur.execute(query, (theid[0], datetime.datetime.now()))
                     ids = cur.fetchone()
                     helper.stop(cnx, cur)
 
@@ -88,7 +88,6 @@ def login():
                 else:
                     return Response(status=200)
             else:
-                #dont
                 return helper.error()
         else:
             return helper.error()
