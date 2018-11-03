@@ -64,6 +64,7 @@ def book():
 
 @post.route('/login', methods=['POST'])
 def login():
+    print(request.json)
     data = request.json
 
     if data:

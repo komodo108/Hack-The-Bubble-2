@@ -10,28 +10,28 @@ function validate() {
     
     var jsondata;
     if(booking) {
-        jsondata = { "username": $("#username").val(), "password": $("#password").val(), "booking": 0 };
+        jsondata = { "user": $("#username").val(), "pass": $("#password").val(), "booking": 0 };
     } else {
-        jsondata = { "username": $("#username").val(), "password": $("#password").val(), "booking": 1 };    
+        jsondata = { "user": $("#username").val(), "pass": $("#password").val(), "booking": 1 };    
     }
 
             $.ajax({type: "POST",
-                    url: "/api/get/session",
+                    url: "/post/login",
                     dataType: "json",
                     contentType: "application/json",
                     data: JSON.stringify(jsondata),
                     success: function(result) {
                         //Store session to check for later and redirect
                         if(!booking){
-                            setCookie("booking", JSON.parse(result).booking, 7);
+                            setCookie("booking", result.booking, 7);
                         }
                         location.assign(location.protocol + "/loungers");
                     },
+
                     error: function() {
-                        $("#submit").prop('disabled', false);
-                        $("#submit").html("Sign In");
-                        add_alert("Bad", "Username or password was incorrect!");
+                        $("#theerror").html("<p style='color: red;'>An error occured! Please try again!</p>");
                     }});
+            return false;
 }
 
 //Sets a cookie on the document name to value for days daya

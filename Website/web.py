@@ -9,9 +9,13 @@ web = Blueprint('web', __name__)
 @web.route('/', methods=['GET'])
 def index():
     """Routes '/' to index.html"""
-    return render_template('index.html', title="Hello!", render=True)
+    return render_template('index.html')
 
 # More browser endpoints here
+@web.route('/loungers', methods=['GET'])
+def loungers():
+    #We'll need the number of loungers, etc
+    return render_template('lounger.html')
 
 # For downloading files
 @web.route('/files/<path:filename>', methods=['GET'])
