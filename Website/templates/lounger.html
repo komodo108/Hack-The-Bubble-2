@@ -50,8 +50,8 @@
                 <button class="btn btn-light open" type="button" onclick="openForm()">Table {{loop.index}}</button>
                 <div class="form-popup" id="myForm">
                     <form role="form" class="form-container">
-                    <h1>name</h1>
-                    <h4>desc</h4>
+                    <h1 id="name{{loop.index}}">Sunny</h1>
+                    <h4 id="desc{{loop.index}}">It's always sunnier here!</h4>
                       
                     <label for="starttime{{loop.index}}"><b>Start Time</b></label>
                     <input type="text" name="starttime{{loop.index}}" required/>
@@ -87,8 +87,8 @@
                         });
                     </script>
                 
-                    <button id="book{{lloop.index}}" type="submit" class="btn">Book</button>
-                    <button id="close{{lloop.index}}" type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+                    <button id="book{{loop.index}}" type="submit" class="btn">Book</button>
+                    <button id="close{{loop.index}}" type="submit" class="btn cancel" onclick="closeForm(); return false;">Close</button>
                 </form>
                 </div>
             </div>

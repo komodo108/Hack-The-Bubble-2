@@ -25,6 +25,7 @@ function validate() {
                         if(!booking){
                             setCookie("booking", result.booking, 7);
                         }
+                        setCookie("client", 4 /*TODO: Change this!*/, 7);
                         location.assign(location.protocol + "/loungers");
                     },
 
