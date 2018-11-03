@@ -5,12 +5,19 @@
 p {
     color: red;
 }
+body {
+    padding-left: 5%;
+}
 .table {
-    width: 200px;
-    height: 55px;
+    width: 20%;
+    height: 15%;
     display: inline-block;
     border: 2px solid black;
     margin: 0 0 2vw 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 55px;
+    font-size: 1.5rem;
 }
 
 .open {
