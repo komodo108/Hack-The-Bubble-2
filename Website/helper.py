@@ -14,4 +14,3 @@ def start ():
 def stop (con, cursor):
     cursor.close()
     con.close()
-

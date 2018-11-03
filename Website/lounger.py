@@ -1,6 +1,8 @@
-import mysql.connector
 import helper
 import datetime
+
+def getLoungers():
+    print("hello")
 
 def getBooked():
     con, cur = helper.start()
@@ -16,29 +18,30 @@ def getBooked():
     )
     booking_result = cur.fetchall()
 
-    for val in booking_result:
-        print(val)
-    
     # Close Down
     helper.stop(con, cur)
 
-    # Return array of integers
-    return booking_result
+    # Turn tuple into array
+    useful_results = [x for xs in booking_result for x in xs]
 
-getBooked()
-    
+    print(useful_results)
+
+    # Return array of integers
+    return useful_results
+
 def getLoungerInfo(id):
     con, cur = helper.start() 
+    chair_id = id
 
     cur.execute(
         'SELECT Lounger.name, Lounger.desc'
-        'FROM Lounger'
-        'WHERE Lounger.id = %s'
-        'LIMIT 1;',
-        (id)
+        ' FROM Lounger'
+        ' WHERE Lounger.id = %s'
+        ' LIMIT 1;',
+        (chair_id, )
     )
     lounger_info = cur.fetchall()
 
     helper.stop(cur, con)
 
-    return lounger_info
+    return useful_results[0]
