@@ -1,7 +1,3 @@
-$('#submit').click( function() {
-    var table = $('#example-table').tableToJSON();
-});
-
 function createOrder() {
     //get Pauls help with getting all the ordered elements in one go
     //for each loop to iterate through the table rows
@@ -14,14 +10,14 @@ function createOrder() {
         //check the #quantity for equalling 0
         if(table.rows[i].getElementById("quantity").val() != 0) {
             //add the name and quantity of the item to a string
-            
+
         }
     }
 
     var jsondata = { "order": 
         array.forEach(element => {
-            {"name": $("#name").val(), "quantity": $("#quantity").val()}}
-        , "booking": $(/*booking number*/))};
+            {"name:" + $("#name").val(), "quantity:" + $("#quantity").val()}}
+        , "booking:" + $(/*booking number*/))};
 
     $.ajax({type:"POST",
             url: "/post/order",

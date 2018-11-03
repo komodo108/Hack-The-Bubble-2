@@ -5,6 +5,9 @@ def makeOrder(order):
     # Make the connection and cursor
     con, cur = helper.start()
 
+    all_orders = order[0]
+    booking = order[1]
+
     # Get the size of order table before the new order is added
     cur.execute(
         'SELECT COUNT(Order.id) FROM password.Order;'
@@ -18,11 +21,24 @@ def makeOrder(order):
     # Is there a better way to generate this? 
     # Can i pre calculate the order values as a string
 
-    for val in order:
-        print(val)
-        booking = val[0]
-        item = val[1]
-        quantity = val[2]
+    for val in all_orders:
+        item = val #name of the tuple element
+        quantity = val[0]
+
+        cur.execute(
+            'SELECT id, priceFROM Item WHERE Item.name LIKE %s;',
+            (item)
+        )
+
+        item_details = cur.fetchone()
+
+        item_id = item_details[0]
+
+        item_price = item_details[1]
+
+        cur.close()
+
+        cur = con.cursor()
 
         cur.execute(
             'INSERT INTO password.Order (booking, item, quantity) '
