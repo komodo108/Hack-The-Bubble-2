@@ -4,10 +4,10 @@ import json
 
 def start (): 
     connect = mysql.connector.connect(
-        user = 'password', 
-        password = 'username123',
-        host = 'hackin.cvv0hvbeezdl.us-east-2.rds.amazonaws.com',
-        database = 'password', 
+        user = '<username-here>', 
+        password = '<password-here>',
+        host = '<database-host-here>',
+        database = '<database-name-here>', 
         buffered = True
     )
     cursor = connect.cursor()
