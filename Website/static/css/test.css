@@ -58,6 +58,10 @@ body {
     flex-wrap: wrap;
 }
 
+.tables {
+    padding-left: 15%;
+    padding-right: 5%;
+}
 .navbar {
     border-radius: 6px;
     border: 1px solid black;
