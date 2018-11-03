@@ -79,9 +79,9 @@ def login():
                 if dataDict['booked']:
                     # deal with booking
                     cnx, cur = helper.start()
-                    query = 'SELECT `id` FROM Booking WHERE `client` = %s AND start_time => %s'
+                    query = 'SELECT `MAX(id)` FROM Booking WHERE `client` = %s AND start_time => %s'
                     cur.execute(query, (dataDict['user'], datetime.datetime.now()))
-                    ids = cur.fetchall()
+                    ids = cur.fetchone()
                     helper.stop(cnx, cur)
 
                     return Response(json.dumps({'bookings' : ids}), status=200, mimetype='application/json')
